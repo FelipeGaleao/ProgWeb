@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PROGWEB - Plano de Ensino 2022_1</title>
+</head>
+
+<style>
+
+    #conteudo {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    #quadrado{
+        background-color: rgb(179, 11, 128);
+        width: 400px;
+        height: 400px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        color: white;
+    }
+</style>
+
+<script>
+    
+    let cor_original_quadrado;
+
+    window.onload = function(){
+        let quadrado = document.getElementById("quadrado");
+        cor_original_quadrado = quadrado.style.backgroundColor;
+    }
+
+    function retornar_cor_original() {
+        document.getElementById("quadrado").style.backgroundColor = cor_original_quadrado;
+    }
+    
+    function mudar_cor_quadrado(){
+        document.getElementById("quadrado").style.backgroundColor = "rgb(0, 0, 0)";
+    }
+    
+</script>
+<body>
+
+    <div id="conteudo">
+        <div id="quadrado" onmouseover="mudar_cor_quadrado()" onmouseout="retornar_cor_original()">
+            <h1>PROGWEB - Plano de Ensino 2022_1</h1>
+        </div>
+    </div>
+
+</body>
+
+</html>
