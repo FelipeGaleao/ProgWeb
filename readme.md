@@ -1,0 +1,1 @@
+📖🔌 Esse repositório contém arquivos e códigos desenvolvidos durante a disciplina de Laboratório de Banco de Dados do curso de Engenharia de Software da UFMS.
