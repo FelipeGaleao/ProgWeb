@@ -13,3 +13,4 @@ function retornar_cor_original() {
 function mudar_cor_quadrado(){
     document.getElementById("quadrado").style.backgroundColor = "rgb(0, 0, 0)";
 }
+

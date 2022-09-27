@@ -1,0 +1,57 @@
+<html>
+
+<body>
+
+    <div id="container">
+
+        <textarea id="form_csv">
+
+        </textarea>
+        <button id="submit">
+
+        </button>
+    </div>
+
+</body>
+
+<script>
+    let form_csv = document.getElementById("form_csv");
+    let submit = document.getElementById("submit");
+
+    submit.onclick = function () {
+
+        let csv = form_csv.value;
+
+        let csv_array = [];
+
+        csv.split("\n").forEach(function (row) {
+
+            csv_array.push({
+                "data": new Date(row.split(",")[0].substr(6, 4), row.split(",")[0].substr(3, 2), row.split(",")[0].substr(0, 2)),
+                "valor": row.split(",")[1],
+                "produto": row.split(",")[2]
+            });
+        });
+
+        console.log(csv_array);
+
+        // decrescente pela data 
+
+        csv_ordenado_data = csv_array.sort(function (a, b) {
+            return b.data - a.data;
+        });
+
+        // agrupar por produto vendido
+
+        
+
+
+        console.log(csv_agrupado_produto_vendido);
+
+
+
+
+    }
+</script>
+
+</html>
