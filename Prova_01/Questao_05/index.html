@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Desenhando estrela</title>
+    </head>
+<body>
+    <canvas id="desenho_estrela" width="300" height="250"></canvas>
+</body>
+
+<script>
+    // Desenhando uma estrela
+
+    var canvas = document.getElementById('desenho_estrela');
+    var ctx = canvas.getContext('2d');
+    ctx.beginPath();
+    ctx.moveTo(108, 0.0);
+    ctx.lineTo(150, 70);
+    ctx.lineTo(218, 80);
+    ctx.lineTo(162, 140);
+    ctx.lineTo(175, 220);
+    ctx.lineTo(108, 170);
+    ctx.lineTo(41.2, 205);
+    ctx.lineTo(55, 131);
+    ctx.lineTo(1, 78);
+    ctx.lineTo(75, 68);
+    ctx.lineTo(108, 0);
+    ctx.stroke();
+    ctx.closePath();
+
+</script>
+</html>
