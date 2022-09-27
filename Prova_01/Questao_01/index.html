@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Conversão de Moeda</title>
+</head>
+
+<link rel="stylesheet" href="style.css">
+
+<body>
+
+    <div id="container">
+        <h1>Conversor de Moedas </h1>
+        <div id="coin-body-content">
+
+            <div class="row">
+                <div class="form-moeda">
+                    <p>Você tem...</p>
+                    <div class="input-moeda">
+                        <input id="valor_moeda_1" placeholder="Insira o valor" />
+                        <select id="moeda_1">
+                            <option>BRL</option>
+                            <option>USD</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="spin">
+                    <img width="48px" src="https://www.shareicon.net/download/2016/11/14/851962_left.svg">
+                </div>
+                <div class="form-moeda">
+                    <p>Você irá receber...</p>
+                    <div class="input-moeda">
+                        <input id="valor_moeda_2" placeholder="Insira o valor" />
+                        <select required id="moeda_2">
+                            <option value="">Selecione</option>
+                            <option>BRL</option>
+                            <option>USD</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="col-btn-converter">
+                    <button type="submit" onclick="converter()">Converter</button>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</body>
+
+<script src="script.js"></script>
+
+</html>

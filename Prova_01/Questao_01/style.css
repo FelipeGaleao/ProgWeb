@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+    background-color: #1F1D2B;
+    font-family: "Open Sans", sans-serif;
+    color: #21232E;
+}
+
+h1 {
+    color: white;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#coin-body-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 5vh;
+    background-color: white;
+    width: 60vw;
+    height: 20vh;
+    border-radius: 15px;
+}
+
+.form-moeda {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+    padding-left: 25px;
+    padding-right: 10px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #E9E9E9;
+    border-radius: 15px;
+    width: 25vw;
+    margin-left: 10px;
+    margin-right: 15px;
+    height: 10vh;
+}
+
+.form-moeda p {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.input-moeda {
+    display: flex;
+    flex-direction: row;
+}
+
+input {
+    height: 30px;
+    width: 80%;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+}
+
+#spin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 16px;
+    margin-right: 16px;
+    height: 120px;
+}
+
+#col-btn-converter {
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    height: 120px;
+}
+
+#col-btn-converter button {
+    background-color: #3AAD8C;
+    border: none;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    margin-left: 20px;
+    color: white;
+}
+
+select {
+    border: none;
+    outline: none;
+}
+
+options {
+    border: none;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+#cotacoes div:nth-child(2) {
+    margin-left: 11vw;
+    display: flex;
+}

@@ -1,55 +1,377 @@
+<!DOCTYPE html>
 <html>
+
+<head>
+    <title>Conversão de Moeda</title>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+    body {
+        background-color: #CBCBCB;
+        font-family: "Open Sans", sans-serif;
+        color: #21232E;
+    }
+
+    #container {
+        width: 100%;
+        height: 100%;
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .retangulo {
+        background-color: #F3F3F3;
+        width: 80vw;
+        height: 80vh;
+        display: flex;
+        padding-left: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    #title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 10px;
+    }
+
+    #title p {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    #body {
+        background-color: #F8F8F8;
+        border-radius: 15px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #form_csv {
+        border: 0.6px #EFEAEA solid;
+        height: 400px;
+        width: 700px;
+    }
+
+    button {
+        background-color: #DE3905;
+        color: white;
+        border: 0.6px #EFEAEA solid;
+        border-radius: 5px;
+        height: 4vh;
+        width: 100px;
+        margin-top: 10px;
+    }
+
+    table {
+        border: 0.6px #EFEAEA solid;
+        border-radius: 5px;
+        height: 200px;
+        width: 100%;
+    }
+
+    #tabela {
+        height: 45vh;
+        width: 80%;
+        table-layout: fixed;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    #tabela_compras {
+        border: 2px #CBCBCB solid;
+        height: 50px;
+        margin-right: 30px;
+    }
+
+    #tabela_compras tr th {
+        border-radius: 5px;
+    }
+
+    #tabela_compras tr td {
+        background-color: white;
+        text-align: center;
+        padding: 5px;
+        max-width: 30px;
+    }
+
+    #cards {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        line-height: 1em;
+        height: 10vh;
+        width: 15vw;
+        margin-bottom: 30px;
+        color: white;
+        background-color: #FBBC05;
+        padding-left: 20px;
+        border-radius: 10px;
+        padding-bottom: 3vh;
+    }
+
+    .card h3 {
+        font-size: 24px;
+        font-weight: bold;
+    }
+</style>
 
 <body>
 
     <div id="container">
 
-        <textarea id="form_csv">
+        <div id="retangulo_1" class="retangulo">
+            <div id="title">
+                <p>Calculadora de Vendas</p>
+                    <span>Insira do seguinte formato:</span>
+                    <span>dd/MM/yyyy, 10.00, nome_do_produto_1</span>
+                    <span>dd/MM/yyyy, 10.00, nome_do_produto_1</span>
 
-        </textarea>
-        <button id="submit">
+            </div>
 
-        </button>
+            <div id="body">
+                <div id="box-form_csv"> <textarea id="form_csv"> </textarea></div>
+                <div id="box-btn_processar"> <button type="submit" onclick="processar_dados()">Processar</button> </div>
+            </div>
+        </div>
+
+        <div id="retangulo_2" class="retangulo">
+            <div id="title">
+                <p>Calculadora de Vendas</p>
+            </div>
+
+            <div id="cards">
+                <div class="card">
+                    <h3 id="txt_produto_mais_vendido">400</h3>
+                    <span>Produtos mais vendidos</span>
+                </div>
+                <div class="card">
+                    <h3 id="txt_produto_maior_faturamento">400</h3>
+                    <span>Produto com maior faturamento</span>
+                </div>
+                <div class="card">
+                    <h3 id="txt_produto_mais_caro">400</h3>
+                    <span>Produtos mais caro</span>
+                </div>
+            </div>
+
+            <button id="voltar" onclick="btn_voltar()" style="margin-bottom: 10px;">
+                Voltar
+            </button>
+            <div id="tabela">
+                <table id="tabela_compras">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Produto</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo_tabela">
+
+                    </tbody>
+
+                </table>
+            </div>
+
+
+        </div>
+
+
     </div>
 
 </body>
 
 <script>
-    let form_csv = document.getElementById("form_csv");
-    let submit = document.getElementById("submit");
+    const input_form_data = document.getElementById("form_csv");
 
-    submit.onclick = function () {
+    window.onload = function () {
+        document.getElementById('retangulo_2').style.display = 'none';
+        document.getElementById('retangulo_1').style.display = 'flex';
 
-        let csv = form_csv.value;
+    }
 
-        let csv_array = [];
 
-        csv.split("\n").forEach(function (row) {
+    function ordenar_por_data(vendas) {
+        const vendas_ordenadas_por_data = [];
+        if (vendas.length > 0) {
+            vendas_ordenadas_por_data.push(vendas[0]);
+            for (let i = 1; i < vendas.length; i++) {
+                for (let j = 0; j < vendas_ordenadas_por_data.length; j++) {
+                    if (vendas[i].data > vendas_ordenadas_por_data[j].data) {
+                        vendas_ordenadas_por_data.splice(j, 0, vendas[i]);
+                        break;
+                    }
+                    if (j == vendas_ordenadas_por_data.length - 1) {
+                        vendas_ordenadas_por_data.push(vendas[i]);
+                        break;
+                    }
+                }
+            }
+        }
+        return vendas_ordenadas_por_data;
+    }
 
-            csv_array.push({
-                "data": new Date(row.split(",")[0].substr(6, 4), row.split(",")[0].substr(3, 2), row.split(",")[0].substr(0, 2)),
-                "valor": row.split(",")[1],
-                "produto": row.split(",")[2]
+    function agrupar_por_produto(vendas) {
+        const vendas_agrupadas_por_produto = [];
+        vendas.forEach(element => {
+            element.quantidade = 1;
+            if (vendas_agrupadas_por_produto.length == 0) {
+                vendas_agrupadas_por_produto.push({
+                    "produto": element.produto,
+                    "valor": element.valor,
+                    "quantidade": 1
+                })
+            } else {
+                let flag = false;
+                vendas_agrupadas_por_produto.forEach(element2 => {
+                    if (element2.produto == element.produto) {
+                        element2.valor = parseFloat(element2.valor) + parseFloat(element.valor);
+                        element2.quantidade = parseInt(element2.quantidade) + parseInt(1);
+                        flag = true;
+                    }
+                })
+                if (!flag) {
+                    vendas_agrupadas_por_produto.push({
+                        "produto": element.produto,
+                        "valor": element.valor,
+                        "quantidade": element.quantidade
+                    })
+                }
+            }
+        })
+        return vendas_agrupadas_por_produto;
+    }
+
+    function agrupar_por_quantidade_vendas_produto(vendas_agrupadas_por_produto) {
+        // Ordenar por quantidade de vendas (mais vendido para menos vendido)
+        const produtos_ordenados_por_quantidade = [];
+        if (vendas_agrupadas_por_produto.length > 0) {
+            produtos_ordenados_por_quantidade.push(vendas_agrupadas_por_produto[0]);
+            for (let i = 1; i < vendas_agrupadas_por_produto.length; i++) {
+                for (let j = 0; j < produtos_ordenados_por_quantidade.length; j++) {
+                    if (vendas_agrupadas_por_produto[i].quantidade > produtos_ordenados_por_quantidade[j].quantidade) {
+                        produtos_ordenados_por_quantidade.splice(j, 0, vendas_agrupadas_por_produto[i]);
+                        break;
+                    }
+                    if (j == produtos_ordenados_por_quantidade.length - 1) {
+                        produtos_ordenados_por_quantidade.push(vendas_agrupadas_por_produto[i]);
+                        break;
+                    }
+                }
+            }
+        }
+        return produtos_ordenados_por_quantidade;
+    }
+
+    function agrupar_por_valor_vendas_produto(vendas_agrupadas_por_produto) {
+        // Ordenar por valor de vendas (mais vendido para menos vendido)
+        const produtos_ordenados_por_valor = [];
+
+        if (vendas_agrupadas_por_produto.length > 0) {
+            produtos_ordenados_por_valor.push(vendas_agrupadas_por_produto[0]);
+            for (let i = 1; i < vendas_agrupadas_por_produto.length; i++) {
+                for (let j = 0; j < produtos_ordenados_por_valor.length; j++) {
+                    if (vendas_agrupadas_por_produto[i].valor > produtos_ordenados_por_valor[j].valor) {
+                        produtos_ordenados_por_valor.splice(j, 0, vendas_agrupadas_por_produto[i]);
+                        break;
+                    }
+                    if (j == produtos_ordenados_por_valor.length - 1) {
+                        produtos_ordenados_por_valor.push(vendas_agrupadas_por_produto[i]);
+                        break;
+                    }
+                }
+            }
+        }
+        return produtos_ordenados_por_valor;
+    }
+
+    function btn_voltar() {
+        document.getElementById('retangulo_2').style.display = 'none';
+        document.getElementById('retangulo_1').style.display = 'flex';
+
+
+        vendas_ordenadas_por_data = [];
+        vendas_agrupadas_por_produto = [];
+        vendas_agrupadas_por_quantidade = [];
+        vendas_agrupadas_por_valor = [];
+
+
+    }
+
+    function processar_dados() {
+        const dados = input_form_data.value;
+        const vendas = [];
+        const produtos_ordenados_por_quantidade = [];
+        const produtos_ordenados_por_valor = [];
+
+        let vendas_ordenadas_por_data = [];
+        let vendas_agrupadas_por_produto = [];
+        let vendas_agrupadas_por_quantidade = [];
+        let vendas_agrupadas_por_valor = [];
+
+        document.getElementById('retangulo_1').style.display = 'none';
+
+        document.getElementById('retangulo_2').style.display = 'flex';
+
+        // Processar os dados recebidos
+
+        dados.split('\n').forEach(element => {
+            vendas.push({
+                "data": element.split(',')[0],
+                "valor": element.split(',')[1],
+                "produto": element.split(',')[2]
             });
+        })
+
+        vendas.forEach(element => {
+            console.log(
+                element.data.substr(3, 2) < 10 ? element.data.substr(4, 1) : element.data.substr(3, 2)
+            )
+            element.data = new Date(element.data.substr(6), element.data.substr(3, 2) < 10 ? element.data
+                .substr(4, 1) : element.data.substr(3, 2), element.data.substr(0,
+                    2));
         });
 
-        console.log(csv_array);
 
-        // decrescente pela data 
+        vendas_ordenadas_por_data = ordenar_por_data(vendas);
+        console.log(vendas_ordenadas_por_data);
 
-        csv_ordenado_data = csv_array.sort(function (a, b) {
-            return b.data - a.data;
-        });
-
-        // agrupar por produto vendido
-
-        
-
-
-        console.log(csv_agrupado_produto_vendido);
+        vendas_agrupadas_por_produto = agrupar_por_produto(vendas);
+        vendas_agrupadas_por_quantidade = agrupar_por_quantidade_vendas_produto(vendas_agrupadas_por_produto);
+        produtos_agrupadas_por_maior_valor = agrupar_por_valor_vendas_produto(vendas);
+        vendas_agrupadas_por_valor = agrupar_por_valor_vendas_produto(vendas_agrupadas_por_produto);
 
 
 
+        // Mostrar os dados processados
+        vendas_ordenadas_por_data.forEach(element => {
+            document.getElementById('corpo_tabela').innerHTML += `<tr>
+                <td>${element.data.getDate()}/${element.data.toLocaleString('pt-br', { month: 'long' })}/${element.data.getFullYear()}</td>
+                <td>${element.produto}</td>
+                <td>${element.valor}</td>
+            </tr>`;
+        })
+
+        document.getElementById('txt_produto_mais_vendido').innerText = vendas_agrupadas_por_quantidade[0].produto;
+        document.getElementById('txt_produto_mais_caro').innerText = produtos_agrupadas_por_maior_valor[0].produto;
+        document.getElementById('txt_produto_maior_faturamento').innerText = vendas_agrupadas_por_valor[0].produto;
 
     }
 </script>

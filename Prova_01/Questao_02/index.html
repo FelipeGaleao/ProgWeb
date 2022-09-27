@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Conversão de Moeda</title>
+</head>
+
+<style>
+    #container {
+        width: 100%;
+        height: 100%;
+        margin-top: 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #retangulo {
+        width: 40vw;
+        height: 40vh;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<body>
+
+    <div id="container">
+
+        <div id="retangulo" onclick="avancar_cor()" ondblclick="resetar_cor()">
+            <p id="txtCurso">Engenharia de Software</p>
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    let index = 0;
+
+    function resetar_cor() {
+        document.getElementById("retangulo").style.backgroundColor = "blue";
+        document.getElementById("txtCurso").style.color = "white";
+    }
+
+    function avancar_cor() {
+        index++;
+        switch(index){
+            case 1:
+                document.getElementById("retangulo").style.backgroundColor = "red";
+                document.getElementById("txtCurso").style.color = "white";
+                break;
+            case 2:
+                document.getElementById("retangulo").style.backgroundColor = "blue";
+                document.getElementById("txtCurso").style.color = "white";
+                break;
+            case 3: 
+                document.getElementById("retangulo").style.backgroundColor = "green";
+                document.getElementById("txtCurso").style.color = "white";
+                break;
+            case 4: 
+                document.getElementById("retangulo").style.backgroundColor = "#ffc0cb";
+                document.getElementById("txtCurso").style.color = "white";
+                break;
+            case 5:
+                document.getElementById("retangulo").style.backgroundColor = "yellow";
+                document.getElementById("txtCurso").style.color = "white";
+                break;
+            case 6:
+                document.getElementById("retangulo").style.backgroundColor = "red";
+                document.getElementById("txtCurso").style.color = "white";
+                index = 1;
+                break;
+            
+        }
+
+    }
+</script>
+
+</html>
