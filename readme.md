@@ -1,4 +1,5 @@
-# 📖🔌 Esse repositório contém arquivos e códigos desenvolvidos durante a prova P2 da disciplina de Programação para Web do curso de Engenharia de Software da UFMS.
+## 
+📖🔌 Esse repositório contém arquivos e códigos desenvolvidos durante a disciplina de Programação para Web do curso de Engenharia de Software da UFMS.
 
 ## Como executar?
 - Utilizar o comando `git clone git@github.com:FelipeGaleao/ProgWeb.git` para clonar o repositório
