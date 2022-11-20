@@ -60,8 +60,6 @@ function response($response_code, $resposta)
  */
 
 {
-    // $response['order_id'] = $order_id;
-    // $response['amount'] = $amount;
     $json_response = json_encode($resposta, true);
     echo $json_response;
 }
