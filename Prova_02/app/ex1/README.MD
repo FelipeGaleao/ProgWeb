@@ -9,3 +9,11 @@ A API lê um arquivo moedas.json e retorna os dados de acordo com a moeda solici
 - Acessar a URL `http://localhost/questao_1/api.php?codigo_moeda=ARS` 
 - Para verificar em casos de que não exista a moeda, acesse `http://localhost/questao_1/api.php`
   
+## Endpoints
+- **GET** `http://localhost/questao_1/api.php?codigo_moeda=ARS` - Retorna a moeda solicitada
+  - Parametros
+    - codigo_moeda: Código da moeda a ser buscada
+  - Resposta
+    - 200: Moeda encontrada
+    - 404: Moeda não encontrada
+

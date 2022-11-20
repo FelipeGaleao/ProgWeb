@@ -2,6 +2,7 @@
 
 // Ler o arquivo csv 
 $rows = array_map('str_getcsv', file('../ex3/lista.csv'));
+
 $header = array_shift($rows);
 $csv = array();
 foreach ($rows as $row) {
